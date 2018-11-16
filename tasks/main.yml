@@ -8,6 +8,13 @@
     - builder
     - builder-package
 
+- name: Main | Install koji-builder deps
+  package:
+    name: "yum"
+    state: present
+  tags:
+    - builder-package
+
 - name: Configure /etc/kojid/kojid.conf
   template:
     src: kojid.conf.j2
@@ -16,7 +23,7 @@
     group: root
     mode: '0640'
   notify:
-    - restart kojid  
+    - restart kojid
   tags:
     - builder
 
